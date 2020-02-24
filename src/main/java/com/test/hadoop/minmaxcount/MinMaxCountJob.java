@@ -46,6 +46,9 @@ public class MinMaxCountJob {
         job.setMapperClass(MinMaxCountMapper.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(MinMaxCountTupleWritable.class);
+        // combiner settings
+        // 因为combiner逻辑和reduce一样，所以此处可以直接使用MinMaxCountReducer.class
+        job.setCombinerClass(MinMaxCountCombiner.class);
         // reduce settings
         job.setReducerClass(MinMaxCountReducer.class);
         job.setOutputKeyClass(Text.class);

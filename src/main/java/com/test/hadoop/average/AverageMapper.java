@@ -39,7 +39,7 @@ public class AverageMapper extends Mapper<Object, Text, IntWritable, CountAverag
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         //
-        Map<String, String> commentMap = this.transformXmlToMap(value.toString());
+        Map<String, String> commentMap = this.transformJsonToMap(value.toString());
         String strDate = commentMap.get("creationDate");
         String text = commentMap.get("text");
 
@@ -60,7 +60,7 @@ public class AverageMapper extends Mapper<Object, Text, IntWritable, CountAverag
     }
 
 
-    public Map<String, String> transformXmlToMap(String valueStr) {
+    public Map<String, String> transformJsonToMap(String valueStr) {
         Map<String, String> commentMap = new HashMap<String, String>();
         try {
             commentMap = (Map) JSON.parseObject(valueStr);

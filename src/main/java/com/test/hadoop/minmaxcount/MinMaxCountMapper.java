@@ -1,7 +1,6 @@
 package com.test.hadoop.minmaxcount;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
@@ -40,7 +39,7 @@ public class MinMaxCountMapper extends Mapper<Object, Text, Text, MinMaxCountTup
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         //
-        Map<String, String> commentMap = this.transformXmlToMap(value.toString());
+        Map<String, String> commentMap = this.transformJsonToMap(value.toString());
         String creationDateStr = commentMap.get("creationDate");
         String userId = commentMap.get("userId");
         Date creationDate = new Date();
@@ -58,7 +57,7 @@ public class MinMaxCountMapper extends Mapper<Object, Text, Text, MinMaxCountTup
         context.write(outUserId, outTupleWritable);
     }
 
-    public Map<String, String> transformXmlToMap(String valueStr) {
+    public Map<String, String> transformJsonToMap(String valueStr) {
         Map<String, String> commentMap = new HashMap<String, String>();
         try {
             commentMap = (Map) JSON.parseObject(valueStr);
