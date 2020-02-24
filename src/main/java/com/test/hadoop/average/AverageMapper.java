@@ -69,4 +69,5 @@ public class AverageMapper extends Mapper<Object, Text, IntWritable, CountAverag
         }
         return commentMap;
     }
+
 }
