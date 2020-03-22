@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapJoin extends Configured implements Tool {
-    private static final String CUSTOMER_CACHE_URL = "hdfs://q-macbook.local:9000/test/customer.txt";
+    private static final String CUSTOMER_CACHE_URL = "hdfs://yiwen-macbook.local:9000/test/mapreduce/mapjoin/customer.txt";
 
     private static class CustomerBean {
         private int custId;
